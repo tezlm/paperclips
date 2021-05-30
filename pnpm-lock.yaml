@@ -1,0 +1,39 @@
+lockfileVersion: 5.3
+
+specifiers:
+  fetch-yode: ^1.0.1
+  gui: ^0.9.6
+
+dependencies:
+  fetch-yode: 1.0.1
+  gui: 0.9.6
+
+packages:
+
+  /download-yue/2.0.2:
+    resolution: {integrity: sha512-xLgE/XcSXVrtu1f8uYOgiqkOf4DcyrZCI+wORHOFxhqo4+4pn30SbgHY9qhlWHugGV+7oXaXQmWhwd0J77tS2w==}
+    engines: {node: '>=7'}
+    hasBin: true
+    dev: false
+
+  /fetch-yode/1.0.1:
+    resolution: {integrity: sha512-IvzZydeP/K9sfNrbT+pKhGtJiXJFLZRQ+CAIpLShX6l2mBJgJcwgBTKqPWyAflgJ5Lco1FQRWxS920/4AHblxQ==}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      download-yue: 2.0.2
+      node-fetch: 2.6.0
+    dev: false
+
+  /gui/0.9.6:
+    resolution: {integrity: sha512-RB9WGPy5FkHLzb15CJQwozCwNqjp9OixH+5XBXc3fVZDmlc6tMRJHFgXk4NVkSMv3iB/Y1SYDmeR7GaWwq0H6Q==}
+    engines: {node: '>=12'}
+    requiresBuild: true
+    dependencies:
+      download-yue: 2.0.2
+    dev: false
+
+  /node-fetch/2.6.0:
+    resolution: {integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==}
+    engines: {node: 4.x || >=6.0.0}
+    dev: false

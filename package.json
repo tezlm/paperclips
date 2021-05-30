@@ -1,0 +1,15 @@
+{
+	"name": "paperclips",
+	"version": "1.0.0",
+	"description": "paperclips",
+	"main": "index.js",
+	"author": "zestylemonade",
+	"license": "WTFPL",
+	"scripts": {
+		"start": "yode index.js"
+	},
+	"dependencies": {
+		"fetch-yode": "^1.0.1",
+		"gui": "^0.9.6"
+	}
+}
