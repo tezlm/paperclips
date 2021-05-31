@@ -11,11 +11,12 @@ const map = [
 function init(screen) {
 	while(flakes.length) flakes.pop();
 	for(let i = 0; i < 300; i++) {
+		const speed = Math.random() * 2 + 0.5
 		flakes.push({
 			x: Math.random() * screen.width,
 			y: Math.random() * screen.height,
-			vx: Math.random() * 6 + 2,
-			vy: Math.random() * 6 + 2,
+			vx: speed + Math.random(),
+			vy: speed + Math.random(),
 			size: Math.floor(Math.random() * 3) + 3,
 			color: map[Math.floor(Math.random() * map.length)],
 		});

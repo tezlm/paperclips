@@ -1,17 +1,24 @@
 // animated wallpaper by zestylemonade
 const gui = require("gui");
+const { version } = require("./package.json");
 const { argv } = process;
-const options = { duration: 1000 * 60 * 5};
+const options = { duration: 1000 * 60 * 5 };
+const names = [
+	"snow",  "ocean", "sunset", "grid",
+	"drift", "orbit", "colors",
+];
 
 // parse args
 for(let i = 2; i < argv.length; i++) {
 	if(argv[i] === "-h") {
-		console.log("paperclips");
-		console.log("");
-		console.log("-h\tshow this help");
-		console.log("-s\tstarting scene");
-		console.log("-d\tscene duration (s)");
-		console.log("-D\tscene duration (ms)");
+		const color = str => `\x1b[94m${str}\x1b[0m`
+		console.log(`paperclips ${color("v" + version)}`);
+		console.log(`by ${color("zestylemonade")}`);
+		console.log(``);
+		console.log(`${color("-h")}\tshow this help`);
+		console.log(`${color("-s")}\tstarting scene`);
+		console.log(`${color("-d")}\tscene duration (s)`);
+		console.log(`${color("-D")}\tscene duration (ms)`);
 		process.exit(0);
 	} else if(argv[i] === "-s") {
 		options.scene = argv[++i];
@@ -41,6 +48,7 @@ const colors = {
 	blue2: "#81A1C1",
 	blue3: "#5E81AC",
 	lightgreen: "#8FBCBB",
+	purple: "#B48EAD",
 };
 
 // generate the main window
@@ -52,13 +60,14 @@ window.setContentView(container);
 window.setContentSize(fill);
 window.setBounds(fill);
 window.setTitle("paperclips");
+window.setBackgroundColor(colors.darkblue);
 window.activate();
 window.onFocus = () => window.deactivate();
 process.title = "paperclips";
 
 // animation
 const mouse = { x: -999, y: -999 };
-const scenes = ["snow", "ocean", "sunset", "grid"].map(i => require(`./paper/${i}.js`))
+const scenes = names.map(i => require(`./paper/${i}.js`))
 let scene = require(`./paper/${options.scene || "snow"}.js`);
 scene.init(screen);
 
