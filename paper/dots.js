@@ -1,6 +1,6 @@
-// "snowstorm"
+// "dots"
 const dots = [];
-const vel = 3;
+const vel = 4;
 
 function init(screen) {
 	while(dots.length) dots.pop();
@@ -37,7 +37,7 @@ function update(screen, mouse) {
 function render(colors, painter, dirty) {
 	painter.setColor(colors.darkblue);
 	painter.fillRect(dirty);
-	painter.setColor(colors.white);
+	painter.setColor(colors.grey);
 	for(let i of dots) {
 		painter.arc({ x: i[0], y: i[1] }, i[4], 0, Math.PI * 2);
 		painter.fill();

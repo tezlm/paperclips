@@ -1,10 +1,34 @@
 // animated wallpaper by zestylemonade
 const gui = require("gui");
+const { argv } = process;
+const options = { duration: 1000 * 60 * 5};
+
+// parse args
+for(let i = 2; i < argv.length; i++) {
+	if(argv[i] === "-h") {
+		console.log("paperclips");
+		console.log("");
+		console.log("-h\tshow this help");
+		console.log("-s\tstarting scene");
+		console.log("-d\tscene duration (s)");
+		console.log("-D\tscene duration (ms)");
+		process.exit(0);
+	} else if(argv[i] === "-s") {
+		options.scene = argv[++i];
+		i++;
+	} if(argv[i] === "-d" || argv[i] === "-D") {
+		options.duration = parseInt(argv[i + 1], 10);
+		if(options.duration < 0) throw "duration cant be negative";
+		if(!isFinite(options.duration)) throw "duration cant be infinite";
+		if(isNaN(options.duration)) throw "duration cant be... what is this?";
+		if(argv[i] === "-d") options.duration *= 1000;
+		i += 2;
+	}
+}
 
 // constants
 const screen = gui.screen.getPrimaryDisplay().bounds;
 const fill = { ...screen, x: 0, y: 0 };
-const howLongICanLookAtTheSameWallpaper = 1000 * 60 * 5;
 const colors = {
 	grey: "#4C566A",
 	darkgrey: "#3B4252",
@@ -34,8 +58,8 @@ process.title = "paperclips";
 
 // animation
 const mouse = { x: -999, y: -999 };
-const scenes = ["ocean", "sunset", "grid", "dots"].map(i => require(`./paper/${i}.js`))
-let scene = scenes[0];
+const scenes = ["snow", "ocean", "sunset", "grid"].map(i => require(`./paper/${i}.js`))
+let scene = require(`./paper/${options.scene || "snow"}.js`);
 scene.init(screen);
 
 container.onDraw = (_, p) => p.drawCanvas(canvas, fill);
@@ -48,8 +72,8 @@ container.onMouseLeave = () => {
 	mouse.y = -999;
 };
 
-setInterval(() => scene.update(screen, mouse), 1000 / 60);
 setInterval(() => {
+	scene.update(screen, mouse);
 	scene.render(colors, painter, screen);
 	container.schedulePaint();
 }, 1000 / 30);
@@ -58,7 +82,7 @@ setInterval(() => {
 	if(scene === next) return;
 	scene = next;
 	scene.init(screen);
-}, howLongICanLookAtTheSameWallpaper);
+}, options.duration);
 
 // escape gc
 global.window = window;

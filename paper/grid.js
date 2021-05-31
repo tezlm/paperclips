@@ -6,7 +6,7 @@ const size = 50;
 function init() {}
 
 function update() {
-	scroll++;
+	scroll += 2;
 	if(scroll > size * 2) scroll = 0;
 }
 

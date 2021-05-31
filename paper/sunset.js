@@ -11,7 +11,7 @@ function init(screen) {
 }
 
 function update(screen, mouse) {
-	anim += 0.01;
+	anim += 0.02;
 }
 
 function render(colors, painter, dirty) {

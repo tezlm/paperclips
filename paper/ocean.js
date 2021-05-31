@@ -12,7 +12,7 @@ function init(screen) {
 }
 
 function update(screen, mouse) {
-	anim += 0.02;
+	anim += 0.04;
 }
 
 function render(colors, painter, dirty) {
